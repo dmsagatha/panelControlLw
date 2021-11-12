@@ -14,6 +14,6 @@ class TeamSeeder extends Seeder
     {
         factory(Team::class)->create(['name' => 'Styde']);
 
-        factory(Team::class)->times(99)->create();
+        factory(Team::class)->times(19)->create();
     }
 }

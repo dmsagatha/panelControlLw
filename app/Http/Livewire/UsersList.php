@@ -31,6 +31,16 @@ class UsersList extends Component
 
     public $order;
 
+    public function render()
+    {
+        $sortable = new Sortable($this->originalUrl);
+
+        return view('users._livewire-list', [
+            'users' => $this->getUsers($sortable),
+            'sortable' => $sortable,
+        ]);
+    }
+
     protected $updatesQueryString = [
         'search' => ['except' => ''],
         'state' => ['except' => 'all'],
@@ -117,15 +127,5 @@ class UsersList extends Component
         $sortable->appends($users->parameters());
 
         return $users;
-    }
-
-    public function render()
-    {
-        $sortable = new Sortable($this->originalUrl);
-
-        return view('users._livewire-list', [
-            'users' => $this->getUsers($sortable),
-            'sortable' => $sortable,
-        ]);
     }
 }

@@ -1,4 +1,4 @@
- <div id="users-table" class="table-responsive-lg">
+<div id="users-table" class="table-responsive-lg">
      @if ($users->isNotEmpty())
         <table class="table table-sm">
             <thead class="thead-dark">
