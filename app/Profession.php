@@ -2,18 +2,20 @@
 
 namespace App;
 
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class Profession extends Model
 {
-    //protected $table = 'my_professions';
+  use HasFactory;
+  //protected $table = 'my_professions';
 
-    //public $timestamps = false;
+  //public $timestamps = false;
 
-    protected $fillable = ['title'];
+  protected $fillable = ['title'];
 
-    public function profiles()
-    {
-        return $this->hasMany(UserProfile::class);
-    }
+  public function profiles()
+  {
+    return $this->hasMany(UserProfile::class);
+  }
 }

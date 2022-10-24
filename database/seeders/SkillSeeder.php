@@ -14,13 +14,6 @@ class SkillSeeder extends Seeder
    */
   public function run()
   {
-    /* factory(\App\Skill::class)->create(['name' => 'HTML']);
-    factory(\App\Skill::class)->create(['name' => 'CSS']);
-    factory(\App\Skill::class)->create(['name' => 'JS']);
-    factory(\App\Skill::class)->create(['name' => 'PHP']);
-    factory(\App\Skill::class)->create(['name' => 'SQL']);
-    factory(\App\Skill::class)->create(['name' => 'OOP']);
-    factory(\App\Skill::class)->create(['name' => 'TDD']); */
     Skill::factory()->create(['name' => 'HTML']);
     Skill::factory()->create(['name' => 'CSS']);
     Skill::factory()->create(['name' => 'JS']);
@@ -28,5 +21,16 @@ class SkillSeeder extends Seeder
     Skill::factory()->create(['name' => 'SQL']);
     Skill::factory()->create(['name' => 'OOP']);
     Skill::factory()->create(['name' => 'TDD']);
+
+
+    /* DB::table('skills')->insert([
+      ['name' => 'HTML'],
+      ['name' => 'CSS'],
+      ['name' => 'JS'],
+      ['name' => 'PHP'],
+      ['name' => 'SQL'],
+      ['name' => 'OOP'],
+      ['name' => 'TDD'],
+    ]); */
   }
 }

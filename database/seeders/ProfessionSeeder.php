@@ -3,26 +3,29 @@
 namespace Database\Seeders;
 
 use App\Profession;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Database\Seeder;
 
 class ProfessionSeeder extends Seeder
 {
   public function run()
   {
-    // 114 - Seeders con el Modelo
     Profession::create([
-      'title' => 'Desarrollador back-end'
+        'title' => 'Desarrollador back-end',
     ]);
 
     Profession::create([
-      'title' => 'Desarrollador front-end',
+        'title' => 'Desarrollador front-end',
     ]);
 
     Profession::create([
-      'title' => 'Diseñador web',
+        'title' => 'Diseñador web',
     ]);
-
-    // 3-02 Cambios en Model Factories y Seeders
-    Profession::factory()->times(17)->create();
+    
+    /* DB::table('professions')->insert([
+      ['title' => 'Desarrollador back-end'],
+      ['title' => 'Desarrollador front-end'],
+      ['title' => 'Diseñador web'],
+    ]); */
   }
 }
