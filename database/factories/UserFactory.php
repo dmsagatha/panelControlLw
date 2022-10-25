@@ -18,8 +18,8 @@ class UserFactory extends Factory
     return $this->afterCreating(function ($user) {
       // Obtener el objeto con el Perfil, luego guardarlo asociado
       // al Usuario a través de la asociación profile()
-      // $user->profile()->save(UserProfile::factory()->make());
-      $user->profile()->save(UserProfile::class)->factory()->make();
+      $user->profile()->save(UserProfile::factory()->make());
+      // $user->profile()->save(UserProfile::class)->factory()->make();
     });
   }
 
