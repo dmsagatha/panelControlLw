@@ -1,9 +1,18 @@
 <?php
 
-use Faker\Generator as Faker;
+namespace Database\Factories;
 
-$factory->define(App\Profession::class, function (Faker $faker) {
+use App\Models\Profession;
+use Illuminate\Database\Eloquent\Factories\Factory;
+
+class ProfessionFactory extends Factory
+{
+  protected $model = Profession::class;
+
+  public function definition()
+  {
     return [
-        'title' => $faker->sentence(2),
+      'title' => $this->faker->unique()->sentence(2, false),
     ];
-});
+  }
+}

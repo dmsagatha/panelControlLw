@@ -1,36 +1,51 @@
 <?php
 
+namespace Database\Factories;
+
+use App\User;
+use App\UserProfile;
 use Illuminate\Support\Str;
-use Faker\Generator as Faker;
+use Illuminate\Database\Eloquent\Factories\Factory;
 
-/*
-|--------------------------------------------------------------------------
-| Model Factories
-|--------------------------------------------------------------------------
-|
-| This directory should contain each of the model factory definitions for
-| your application. Factories provide a convenient way to generate new
-| model instances for testing / seeding your application's database.
-|
-*/
+class UserFactory extends Factory
+{
+  protected $model = User::class;
 
-$factory->define(App\User::class, function (Faker $faker) {
+  public function configure()
+  {
+    // Después que se cree el Usuario, se ejecute la función anónima
+    // para crear un Perfil
+    return $this->afterCreating(function ($user) {
+      // Obtener el objeto con el Perfil, luego guardarlo asociado
+      // al Usuario a través de la asociación profile()
+      $user->profile()->save(UserProfile::factory()->make());
+      // $user->profile()->save(UserProfile::class)->factory()->make();
+    });
+  }
+
+  public function definition()
+  {
     return [
-        'name' => $faker->name,
-        'email' => $faker->unique()->safeEmail,
-        'password' => '$2y$10$ZwGRn793jmScCZ8c9s3mR.6YIfCcVGghmAf3PGgf5xiZR5lvTYIey',
-        'remember_token' => Str::random(10),
-        'role' => 'user',
-        'active' => true,
+      'name'     => $this->faker->name(),
+      'email'    => $this->faker->unique()->safeEmail(),
+      'password' => '$2y$10$TKh8H1.PfQx37YgCzwiKb.KjNyWgaHb9cbcoQgdIVFlYg7B77UdFm', // secret
+      // 'password' => $password ?: $password = bcrypt('secret'),
+      'role'     => $this->faker->randomElement(['user', 'admin']),
+      'active'   => true,
+      'remember_token' => Str::random(10),
     ];
-});
+  }
 
-$factory->afterCreating(App\User::class, function ($user, $faker) {
-    $user->profile()->save(factory(App\UserProfile::class)->make());
-});
-
-$factory->state(App\User::class, 'inactive', function ($faker) {
-    return [
+  /**
+   *  2-34 Usar campos y atributos diferentes a los de la base de datos
+   *  Definir un state para estado inactivo del campo active
+   */
+  public function inactive()
+  {
+    return $this->state(function () {
+      return [
         'active' => false,
-    ];
-});
+      ];
+    });
+  }
+}

@@ -1,9 +1,18 @@
 <?php
 
-use Faker\Generator as Faker;
+namespace Database\Factories;
 
-$factory->define(App\Team::class, function (Faker $faker) {
+use App\Team;
+use Illuminate\Database\Eloquent\Factories\Factory;
+
+class TeamFactory extends Factory
+{
+  protected $model = Team::class;
+
+  public function definition()
+  {
     return [
-        'name' => $faker->unique()->company,
+      'name' => $this->faker->unique()->company,
     ];
-});
+  }
+}

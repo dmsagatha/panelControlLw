@@ -1,12 +1,18 @@
 <?php
 
-/** @var \Illuminate\Database\Eloquent\Factory $factory */
+namespace Database\Factories;
 
 use App\Login;
-use Faker\Generator as Faker;
+use Illuminate\Database\Eloquent\Factories\Factory;
 
-$factory->define(Login::class, function (Faker $faker) {
+class LoginFactory extends Factory
+{
+  protected $model = Login::class;
+
+  public function definition()
+  {
     return [
-        'created_at' => $faker->dateTime('now', 'Europe/London'),
+      'created_at' => $this->faker->dateTime('now', 'America/Bogota'),
     ];
-});
+  }
+}
